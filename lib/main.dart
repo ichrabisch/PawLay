@@ -1,77 +1,63 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:paw/page/menu.dart';
-import 'package:paw/page/classes/likes.dart';
-import 'package:paw/page/classes/login.dart';
-import 'package:paw/page/my_library.dart';
-import 'package:paw/page/playlists.dart';
-import 'package:paw/page/search.dart';
-import 'package:paw/page/classes/shazam.dart';
-import 'package:paw/page/classes/sign_up.dart';
-import 'package:paw/page/classes/spotify.dart';
-import 'package:paw/page/user.dart';
+import 'package:paw/core/enum/lang_enum.dart';
+import 'package:paw/core/init/lang/language_manager.dart';
+import 'package:paw/core/init/lang/locale_keys.g.dart';
 
-void main() {
-  runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized(); //WidgetsFlutterBinding??
+  await EasyLocalization
+      .ensureInitialized(); //başlangıçtan itibaren dil değiştirilebilmesini sağlar
+  runApp(EasyLocalization(
+    child: MainApp(),
+    supportedLocales: LanguageManager.instance.supportedLanguage,
+    path: 'assets/lang', //constant
+  ));
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
 
-class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      localizationsDelegates:
+          context.localizationDelegates, //desteklenen dillerin temsilcileri?
+      supportedLocales: context.supportedLocales, //desteklenen diller
+      locale: context.locale,
+      home: ChangeLanguage(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class ChangeLanguage extends StatefulWidget {
+  const ChangeLanguage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<ChangeLanguage> createState() => _ChangeLanguageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  int index = 2;
-  final screens = [
-    PlayLists(),
-    Search(),
-    Menu(),
-    MyLibrary(),
-    User(),
-  ];
+class _ChangeLanguageState extends State<ChangeLanguage> {
+  @override
+  List<DropdownMenuItem<LanguageCodes>> get dropdownItems {
+    List<DropdownMenuItem<LanguageCodes>> menuItems = [
+      DropdownMenuItem(child: Text('English'), value: LanguageCodes.EN),
+      DropdownMenuItem(child: Text('Türkçe'), value: LanguageCodes.TR),
+      DropdownMenuItem(child: Text('Espanol'), value: LanguageCodes.ESP)
+    ];
+    return menuItems;
+  }
+
+  String seletedLanguage = LanguageCodes.EN.toString();
+
   @override
   Widget build(BuildContext context) {
-    final items = <Widget>[
-      Icon(Icons.my_library_music,
-          size: 30, color: Color.fromARGB(255, 3, 92, 66)),
-      Icon(Icons.search, size: 30, color: Color.fromARGB(255, 3, 92, 66)),
-      Icon(Icons.headphones, size: 30, color: Color.fromARGB(255, 3, 92, 66)),
-      Icon(Icons.my_library_music_outlined,
-          size: 30, color: Color.fromARGB(255, 3, 92, 66)),
-      Icon(Icons.person, size: 30, color: Color.fromARGB(255, 3, 92, 66)),
-    ];
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 3, 92, 66),
-      body: screens[index],
-      bottomNavigationBar: CurvedNavigationBar(
-        height: 60,
-        index: index,
-        color: Color.fromARGB(255, 247, 238, 203),
-        backgroundColor: Color.fromARGB(255, 3, 92, 66),
-        items: items,
-        onTap: (index) {
-          setState(() => this.index = index);
-        },
-        animationCurve: Curves.elasticOut,
-        animationDuration: Duration(milliseconds: 1500),
+      appBar: AppBar(title: Text(LocaleKeys.Welcome.tr())),
+      body: DropdownButton(
+        value: seletedLanguage,
+        onChanged: (String?),
+        items: dropdownItems,
       ),
     );
   }
