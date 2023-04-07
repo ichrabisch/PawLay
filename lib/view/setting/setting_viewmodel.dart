@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:paw/core/enum/lang_enum.dart';
 import 'package:paw/core/init/lang/language_manager.dart';
-part 'settings_viewmodel.g.dart';
+import 'package:mobx/mobx.dart';
+part 'setting_viewmodel.g.dart';
 
-class SettingViewModel = _SettingViewModelBase with _$SettingsViewModel;
+class SettingsViewModel = _SettingsViewModelBase with _$SettingsViewModel;
 
-abstract class _SettingViewModelBase with Store {
+abstract class _SettingsViewModelBase with Store {
   @observable
   String language = 'en';
   @action

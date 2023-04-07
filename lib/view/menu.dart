@@ -1,12 +1,15 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'build_extention.dart';
+import 'package:paw/core/init/lang/locale_keys.g.dart';
 
 class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
         title: Text(
-          "Welcome, Fatih",
+          //tr funct comes from easy localization package
+          LocaleKeys.Welcome.tr() + " Fatih",
           style: TextStyle(
               color: Color.fromARGB(255, 247, 238, 203),
               fontFamily: "Times New Roman",
@@ -23,7 +26,7 @@ class Menu extends StatelessWidget {
             SizedBox(
               height: context.lowValue,
               child: Text(
-                "RECOMMENDED FOR YOU",
+                LocaleKeys.Recommend.tr(),
                 style: TextStyle(
                   color: Color.fromARGB(255, 247, 238, 203),
                   fontFamily: "Time New Roman",
@@ -53,7 +56,7 @@ class Menu extends StatelessWidget {
             SizedBox(
               height: context.lowValue,
               child: Text(
-                "GENRE",
+                LocaleKeys.Genre.tr(),
                 style: TextStyle(
                   color: Color.fromARGB(255, 247, 238, 203),
                   fontFamily: "Time New Roman",

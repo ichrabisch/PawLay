@@ -2,5 +2,10 @@
 
 abstract class  LocaleKeys {
   static const Welcome = 'Welcome';
+  static const Settings = 'Settings';
+  static const Language = 'Language';
+  static const Recommend = 'Recommend';
+  static const Genre = 'Genre';
+  static const Search = 'Search';
 
 }
