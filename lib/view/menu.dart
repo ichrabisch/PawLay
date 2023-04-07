@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'build_extention.dart';
+import '../core/extention/build_extention.dart';
 import 'package:paw/core/init/lang/locale_keys.g.dart';
 
 class Menu extends StatelessWidget {
@@ -36,7 +36,7 @@ class Menu extends StatelessWidget {
             ),
             Container(
               height: context.highValue,
-              color: Colors.amber[600],
+              color: Color.fromARGB(255, 142, 144, 142),
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
@@ -66,7 +66,7 @@ class Menu extends StatelessWidget {
             ),
             Container(
               height: context.highValue,
-              color: Colors.amber[500],
+              color: Color.fromARGB(255, 142, 144, 142),
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
@@ -96,7 +96,7 @@ class Menu extends StatelessWidget {
             ),
             Container(
               height: context.highValue,
-              color: Colors.amber[100],
+              color: Color.fromARGB(255, 142, 144, 142),
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
