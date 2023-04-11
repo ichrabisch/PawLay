@@ -3,15 +3,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:paw/core/init/lang/locale_keys.g.dart';
 
 class Search extends StatelessWidget {
+  const Search({super.key});
+
   @override
   Widget build(BuildContext context) => Scaffold(
-      backgroundColor: Color.fromARGB(255, 3, 92, 66),
+      backgroundColor: const Color.fromARGB(255, 3, 92, 66),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 3, 92, 66),
+        backgroundColor: const Color.fromARGB(255, 3, 92, 66),
         elevation: 0,
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             onPressed: () {
               showSearch(
                 context: context,
@@ -22,11 +24,9 @@ class Search extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Container(
-          child: Text(
-            LocaleKeys.Search.tr(),
-            style: TextStyle(fontSize: 60, color: Colors.black),
-          ),
+        child: Text(
+          LocaleKeys.Search.tr(),
+          style: const TextStyle(fontSize: 60, color: Colors.black),
         ),
       ));
 }
@@ -44,7 +44,7 @@ class MySearchDelegate extends SearchDelegate {
   Widget? buildLeading(BuildContext context) {
     // implemented buildLeading
     IconButton(
-      icon: Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back),
       onPressed: () => close(context, null), //close searchbar
     );
   }
@@ -53,7 +53,7 @@ class MySearchDelegate extends SearchDelegate {
   List<Widget>? buildActions(BuildContext context) {
     // implemented buildActions
     IconButton(
-      icon: Icon(Icons.clear),
+      icon: const Icon(Icons.clear),
       onPressed: () {
         if (query.isEmpty) {
           close(context, null); //close searcbar
@@ -66,7 +66,7 @@ class MySearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) => Container(
-        color: Color.fromARGB(255, 3, 92, 66),
+        color: const Color.fromARGB(255, 3, 92, 66),
         child: Center(
           //implemented buildResults
           child: Text(
@@ -86,7 +86,7 @@ class MySearchDelegate extends SearchDelegate {
     }).toList();
 
     return Container(
-      color: Color.fromARGB(255, 3, 92, 66),
+      color: const Color.fromARGB(255, 3, 92, 66),
       child: ListView.builder(
           itemCount: suggestions.length,
           itemBuilder: (context, index) {
@@ -102,3 +102,4 @@ class MySearchDelegate extends SearchDelegate {
     );
   }
 }
+//modify to searcviewmodel

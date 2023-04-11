@@ -4,5 +4,8 @@
     "Language": "Language",
     "Recommend": "Recommended For You",
     "Genre": "Genre",
-    "Search": "Search"
+    "Search": "Search",
+    "Username": "Username",
+    "Password": "Password",
+    "LogIn": "Log In"
 }

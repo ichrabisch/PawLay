@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:paw/core/enum/lang_enum.dart';
 import 'package:paw/core/init/lang/language_manager.dart';
-import 'package:mobx/mobx.dart';
 part 'setting_viewmodel.g.dart';
 
 class SettingsViewModel = _SettingsViewModelBase with _$SettingsViewModel;

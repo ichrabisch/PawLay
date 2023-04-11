@@ -4,5 +4,8 @@
     "Language": "Dil",
     "Recommend": "Sizin İçin Öneriliyor",
     "Genre": "Tür",
-    "Search": "Ara"
+    "Search": "Ara",
+    "Username": "Kullanıcı Adı",
+    "Password":"Şifre",
+    "LogIn": "Giriş Yap"
 }

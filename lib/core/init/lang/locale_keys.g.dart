@@ -7,5 +7,8 @@ abstract class  LocaleKeys {
   static const Recommend = 'Recommend';
   static const Genre = 'Genre';
   static const Search = 'Search';
+  static const Username = 'Username';
+  static const Password = 'Password';
+  static const LogIn = 'LogIn';
 
 }

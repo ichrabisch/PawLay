@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:paw/core/init/lang/locale_keys.g.dart';
+import 'package:paw/view/auth/login/login_view.dart';
 import 'package:paw/view/setting/setting_viewmodel.dart';
 
 class SettingView extends StatefulWidget {
@@ -23,26 +24,26 @@ class _SettingViewState extends State<SettingView> {
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.Settings.tr(),
-            style: TextStyle(
+            style: const TextStyle(
               color: Color.fromARGB(255, 247, 238, 203),
             )),
-        backgroundColor: Color.fromARGB(255, 3, 92, 66),
+        backgroundColor: const Color.fromARGB(255, 3, 92, 66),
         elevation: 0,
       ),
       body: Container(
-        color: Color.fromARGB(255, 3, 92, 66),
+        color: const Color.fromARGB(255, 3, 92, 66),
         child: Column(
           children: [
             Row(
               children: [
                 Text(
                   LocaleKeys.Language.tr(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     color: Color.fromARGB(255, 247, 238, 203),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Observer(
                   builder: (_) {
                     return DropdownButton(
@@ -53,6 +54,41 @@ class _SettingViewState extends State<SettingView> {
                       },
                     );
                   },
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    LocaleKeys.LogIn.tr(),
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Color.fromARGB(255, 247, 238, 203),
+                    ),
+                  ),
+                ),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(255, 3, 92, 66),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginView(),
+                          ),
+                        );
+                      },
+                      child: const Icon(
+                        Icons.person,
+                        size: 50,
+                        color: Color.fromARGB(255, 247, 238, 203),
+                      )),
                 ),
               ],
             ),

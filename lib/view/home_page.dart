@@ -3,7 +3,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:paw/view/menu.dart';
 import 'package:paw/view/my_library.dart';
 import 'package:paw/view/playlists.dart';
-import 'package:paw/view/search.dart';
+import 'package:paw/view/search/search_view.dart';
 import 'package:paw/view/setting/settings_view.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,37 +16,38 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int index = 2;
   final screens = [
-    PlayLists(),
-    Search(),
-    Menu(),
-    MyLibrary(),
-    SettingView(),
+    const PlayLists(),
+    const Search(),
+    const Menu(),
+    const MyLibrary(),
+    const SettingView(),
   ];
   @override
   Widget build(BuildContext context) {
     final items = <Widget>[
-      Icon(Icons.my_library_music,
+      const Icon(Icons.my_library_music,
           size: 30, color: Color.fromARGB(255, 3, 92, 66)),
-      Icon(Icons.search, size: 30, color: Color.fromARGB(255, 3, 92, 66)),
-      Icon(Icons.headphones, size: 30, color: Color.fromARGB(255, 3, 92, 66)),
-      Icon(Icons.my_library_music_outlined,
+      const Icon(Icons.search, size: 30, color: Color.fromARGB(255, 3, 92, 66)),
+      const Icon(Icons.headphones,
           size: 30, color: Color.fromARGB(255, 3, 92, 66)),
-      Icon(Icons.person, size: 30, color: Color.fromARGB(255, 3, 92, 66)),
+      const Icon(Icons.my_library_music_outlined,
+          size: 30, color: Color.fromARGB(255, 3, 92, 66)),
+      const Icon(Icons.person, size: 30, color: Color.fromARGB(255, 3, 92, 66)),
     ];
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 3, 92, 66),
+      backgroundColor: const Color.fromARGB(255, 3, 92, 66),
       body: screens[index],
       bottomNavigationBar: CurvedNavigationBar(
         height: 60,
         index: index,
-        color: Color.fromARGB(255, 142, 144, 142),
-        backgroundColor: Color.fromARGB(255, 3, 92, 66),
+        color: const Color.fromARGB(255, 142, 144, 142),
+        backgroundColor: const Color.fromARGB(255, 3, 92, 66),
         items: items,
         onTap: (index) {
           setState(() => this.index = index);
         },
         animationCurve: Curves.elasticOut,
-        animationDuration: Duration(milliseconds: 1500),
+        animationDuration: const Duration(milliseconds: 1500),
       ),
     );
   }
