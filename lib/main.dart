@@ -16,10 +16,19 @@ Future<void> main() async {
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  MainApp({super.key});
+  static String name = '';
 
   @override
   Widget build(BuildContext context) {
+    List<dynamic>? data = [];
+    data = ModalRoute.of(context)?.settings.arguments as List?;
+    if (data != null) {
+      name = data[0];
+      print('mainde isim:' + name);
+    } else {
+      name = '';
+    }
     return MaterialApp(
       localizationsDelegates:
           context.localizationDelegates, //desteklenen dillerin temsilcileri?

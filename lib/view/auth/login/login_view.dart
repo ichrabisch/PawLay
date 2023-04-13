@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:paw/components/square_tile.dart';
 import 'package:paw/core/init/lang/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:paw/view/auth/login/login_viewmodel.dart';
@@ -29,7 +30,6 @@ class _LoginViewState extends State<LoginView> {
             children: <Widget>[
               const Icon(Icons.pets, size: 80),
               const SizedBox(height: 30),
-              Text(LocaleKeys.Username.tr()),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
@@ -37,6 +37,9 @@ class _LoginViewState extends State<LoginView> {
                     loginViewModel.saveUserName(text);
                   },
                   decoration: InputDecoration(
+                    enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.all(Radius.circular(30))),
                     hintText: LocaleKeys.Username.tr(),
                   ),
                   keyboardType: TextInputType.text,
@@ -45,19 +48,25 @@ class _LoginViewState extends State<LoginView> {
                   ],
                 ),
               ),
-              Text(LocaleKeys.Password.tr()),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   onChanged: (text) {
                     loginViewModel.savePassword(text);
                   },
-                  decoration:
-                      InputDecoration(hintText: LocaleKeys.Password.tr()),
+                  decoration: InputDecoration(
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                      ),
+                      hintText: LocaleKeys.Password.tr()),
                   keyboardType: TextInputType.number,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  obscureText: true,
                 ),
               ),
+              const SizedBox(height: 10),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 247, 238, 203),
@@ -72,9 +81,43 @@ class _LoginViewState extends State<LoginView> {
                 }), //isButtonActive ? null :  check,
                 child: Text(
                   LocaleKeys.LogIn.tr(),
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                 ),
               ),
+              const SizedBox(height: 50),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Divider(
+                        thickness: 0.5,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Text(LocaleKeys.Continue.tr()),
+                    const Expanded(
+                      child: Divider(
+                        thickness: 0.5,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SquareTile(
+                    imagePath: 'lib/images/google.png',
+                  ),
+                  SizedBox(width: 40),
+                  SquareTile(
+                    imagePath: 'lib/images/apple.png',
+                  ),
+                ],
+              )
             ],
           ),
         ),

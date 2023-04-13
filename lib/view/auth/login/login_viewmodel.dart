@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:paw/view/auth/login/login_view.dart';
+import 'package:paw/view/menu.dart';
 import '../../../main.dart';
 part 'login_viewmodel.g.dart';
 
@@ -22,11 +23,12 @@ abstract class _LoginViewModelBase with Store {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const MainApp(),
+          builder: (context) => MainApp(),
           settings: RouteSettings(arguments: data),
         ),
       );
       buttonPassive = true;
+      print(data);
     } else {
       //kayıtlı değilse uyarı mesajı
       Navigator.pushNamed(context, '/login');

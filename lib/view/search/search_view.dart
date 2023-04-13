@@ -7,13 +7,16 @@ class Search extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      backgroundColor: const Color.fromARGB(255, 3, 92, 66),
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 3, 92, 66),
+        backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
           IconButton(
-            icon: const Icon(Icons.search),
+            icon: const Icon(
+              Icons.search,
+              color: const Color.fromARGB(255, 3, 92, 66),
+            ),
             onPressed: () {
               showSearch(
                 context: context,
@@ -23,10 +26,18 @@ class Search extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
-        child: Text(
-          LocaleKeys.Search.tr(),
-          style: const TextStyle(fontSize: 60, color: Colors.black),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Color.fromARGB(255, 247, 238, 203),
+            Color.fromARGB(255, 3, 92, 66),
+          ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+        ),
+        child: Center(
+          child: Text(
+            LocaleKeys.Search.tr(),
+            style: const TextStyle(fontSize: 60, color: Colors.black),
+          ),
         ),
       ));
 }
@@ -66,7 +77,12 @@ class MySearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) => Container(
-        color: const Color.fromARGB(255, 3, 92, 66),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Color.fromARGB(255, 247, 238, 203),
+            Color.fromARGB(255, 3, 92, 66),
+          ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+        ),
         child: Center(
           //implemented buildResults
           child: Text(
@@ -86,7 +102,12 @@ class MySearchDelegate extends SearchDelegate {
     }).toList();
 
     return Container(
-      color: const Color.fromARGB(255, 3, 92, 66),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(colors: [
+          Color.fromARGB(255, 247, 238, 203),
+          Color.fromARGB(255, 3, 92, 66),
+        ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+      ),
       child: ListView.builder(
           itemCount: suggestions.length,
           itemBuilder: (context, index) {

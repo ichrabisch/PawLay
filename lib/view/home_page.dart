@@ -16,9 +16,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int index = 2;
   final screens = [
-    const PlayLists(),
+    PlayLists(),
     const Search(),
-    const Menu(),
+    Menu(),
     const MyLibrary(),
     const SettingView(),
   ];

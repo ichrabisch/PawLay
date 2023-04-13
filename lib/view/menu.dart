@@ -1,19 +1,23 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:paw/main.dart';
 import '../core/extention/build_extention.dart';
 import 'package:paw/core/init/lang/locale_keys.g.dart';
-import 'package:paw/view/auth/login/login_view.dart';
 
 class Menu extends StatelessWidget {
-  const Menu({super.key});
+  String name = '';
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) {
+    name = MainApp.name;
+    print(name);
+
+    return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text(
           //tr funct comes from easy localization package
-          LocaleKeys.Welcome.tr() + "Fatih",
+          LocaleKeys.Welcome.tr() + name,
           style: const TextStyle(
               color: Color.fromARGB(255, 3, 92, 66),
               fontFamily: "Times New Roman",
@@ -126,5 +130,7 @@ class Menu extends StatelessWidget {
             ],
           ),
         ),
-      ));
+      ),
+    );
+  }
 }

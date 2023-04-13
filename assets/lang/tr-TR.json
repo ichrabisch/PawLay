@@ -7,5 +7,9 @@
     "Search": "Ara",
     "Username": "Kullanıcı Adı",
     "Password":"Şifre",
-    "LogIn": "Giriş Yap"
+    "LogIn": "Giriş Yap",
+    "Continue": "Devam Et",
+    "Library": "Kitaplığın",
+    "Playlists": "Oynatma Listeleri",
+    "Favourites": "Beğendiklerin"
 }

@@ -43,11 +43,14 @@ class _SettingViewState extends State<SettingView> {
             children: [
               Row(
                 children: [
-                  Text(
-                    LocaleKeys.Language.tr(),
-                    style: const TextStyle(
-                      fontSize: 20,
-                      color: Color.fromARGB(255, 3, 92, 66),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      LocaleKeys.Language.tr(),
+                      style: const TextStyle(
+                        fontSize: 20,
+                        color: Color.fromARGB(255, 3, 92, 66),
+                      ),
                     ),
                   ),
                   const Spacer(),
