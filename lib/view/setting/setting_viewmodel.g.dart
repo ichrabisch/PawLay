@@ -29,11 +29,11 @@ mixin _$SettingsViewModel on _SettingsViewModelBase, Store {
       ActionController(name: '_SettingsViewModelBase', context: context);
 
   @override
-  void setLanguage(String value, BuildContext context) {
+  void setLanguage(String lng, BuildContext context) {
     final _$actionInfo = _$_SettingsViewModelBaseActionController.startAction(
         name: '_SettingsViewModelBase.setLanguage');
     try {
-      return super.setLanguage(value, context);
+      return super.setLanguage(lng, context);
     } finally {
       _$_SettingsViewModelBaseActionController.endAction(_$actionInfo);
     }

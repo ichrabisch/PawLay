@@ -9,114 +9,122 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text(
           //tr funct comes from easy localization package
           LocaleKeys.Welcome.tr() + "Fatih",
           style: const TextStyle(
-              color: Color.fromARGB(255, 247, 238, 203),
+              color: Color.fromARGB(255, 3, 92, 66),
               fontFamily: "Times New Roman",
               fontSize: 36),
         ),
         elevation: 0,
-        backgroundColor: const Color.fromARGB(255, 3, 92, 66),
+        backgroundColor: Colors.transparent,
       ),
-      backgroundColor: const Color.fromARGB(255, 3, 92, 66),
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(8),
-          children: <Widget>[
-            SizedBox(
-              height: context.lowValue,
-              child: Text(
-                LocaleKeys.Recommend.tr(),
-                style: const TextStyle(
-                  color: Color.fromARGB(255, 247, 238, 203),
-                  fontFamily: "Time New Roman",
-                  fontSize: 16,
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Color.fromARGB(255, 247, 238, 203),
+            Color.fromARGB(255, 3, 92, 66),
+          ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+        ),
+        child: SafeArea(
+          child: ListView(
+            padding: const EdgeInsets.all(8),
+            children: <Widget>[
+              SizedBox(
+                height: context.lowValue,
+                child: Text(
+                  LocaleKeys.Recommend.tr(),
+                  style: const TextStyle(
+                    color: Color.fromARGB(255, 3, 92, 66),
+                    fontFamily: "Time New Roman",
+                    fontSize: 16,
+                  ),
                 ),
               ),
-            ),
-            Container(
-              height: context.highValue,
-              color: const Color.fromARGB(255, 142, 144, 142),
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  SizedBox(
-                    width: context.highValue,
-                    height: context.highValue,
-                    child: const Center(child: Text("Trial Music 1")),
-                  ),
-                  SizedBox(
-                    width: context.highValue,
-                    height: context.highValue,
-                    child: const Center(child: Text("Trial Music 2")),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: context.lowValue,
-              child: Text(
-                LocaleKeys.Genre.tr(),
-                style: const TextStyle(
-                  color: Color.fromARGB(255, 247, 238, 203),
-                  fontFamily: "Time New Roman",
-                  fontSize: 16,
+              Container(
+                height: context.highValue,
+                color: Colors.transparent,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    SizedBox(
+                      width: context.highValue,
+                      height: context.highValue,
+                      child: const Center(child: Text("Trial Music 1")),
+                    ),
+                    SizedBox(
+                      width: context.highValue,
+                      height: context.highValue,
+                      child: const Center(child: Text("Trial Music 2")),
+                    )
+                  ],
                 ),
               ),
-            ),
-            Container(
-              height: context.highValue,
-              color: const Color.fromARGB(255, 142, 144, 142),
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  SizedBox(
-                    width: context.highValue,
-                    height: context.highValue,
-                    child: const Center(child: Text("Trial 1")),
+              SizedBox(
+                height: context.lowValue,
+                child: Text(
+                  LocaleKeys.Genre.tr(),
+                  style: const TextStyle(
+                    color: Color.fromARGB(255, 3, 92, 66),
+                    fontFamily: "Time New Roman",
+                    fontSize: 16,
                   ),
-                  SizedBox(
-                    width: context.highValue,
-                    height: context.highValue,
-                    child: const Center(child: Text("Trial 2")),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: context.lowValue,
-              child: const Text(
-                "Classic",
-                style: TextStyle(
-                  color: Color.fromARGB(255, 247, 238, 203),
-                  fontFamily: "Time New Roman",
-                  fontSize: 16,
                 ),
               ),
-            ),
-            Container(
-              height: context.highValue,
-              color: const Color.fromARGB(255, 142, 144, 142),
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  SizedBox(
-                    width: context.highValue,
-                    height: context.highValue,
-                    child: const Center(child: Text("Beethoven")),
-                  ),
-                  SizedBox(
-                    width: context.highValue,
-                    height: context.highValue,
-                    child: const Center(child: Text("Vivaldi")),
-                  )
-                ],
+              Container(
+                height: context.highValue,
+                color: Colors.transparent,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    SizedBox(
+                      width: context.highValue,
+                      height: context.highValue,
+                      child: const Center(child: Text("Trial 1")),
+                    ),
+                    SizedBox(
+                      width: context.highValue,
+                      height: context.highValue,
+                      child: const Center(child: Text("Trial 2")),
+                    )
+                  ],
+                ),
               ),
-            ),
-          ],
+              SizedBox(
+                height: context.lowValue,
+                child: const Text(
+                  "Classic",
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 3, 92, 66),
+                    fontFamily: "Time New Roman",
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+              Container(
+                height: context.highValue,
+                color: Colors.transparent,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    SizedBox(
+                      width: context.highValue,
+                      height: context.highValue,
+                      child: const Center(child: Text("Beethoven")),
+                    ),
+                    SizedBox(
+                      width: context.highValue,
+                      height: context.highValue,
+                      child: const Center(child: Text("Vivaldi")),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ));
 }

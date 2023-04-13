@@ -27,7 +27,7 @@ class MainApp extends StatelessWidget {
       locale: context.locale,
       initialRoute: '/',
       routes: {
-        'login': (context) => LoginView(),
+        '/login': (context) => const LoginView(),
       },
       home: const HomePage(),
     );
