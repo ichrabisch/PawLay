@@ -57,6 +57,54 @@ mixin _$LoginViewModel on _LoginViewModelBase, Store {
     });
   }
 
+  late final _$passErrorMessageAtom =
+      Atom(name: '_LoginViewModelBase.passErrorMessage', context: context);
+
+  @override
+  String get passErrorMessage {
+    _$passErrorMessageAtom.reportRead();
+    return super.passErrorMessage;
+  }
+
+  @override
+  set passErrorMessage(String value) {
+    _$passErrorMessageAtom.reportWrite(value, super.passErrorMessage, () {
+      super.passErrorMessage = value;
+    });
+  }
+
+  late final _$userErrorMessageAtom =
+      Atom(name: '_LoginViewModelBase.userErrorMessage', context: context);
+
+  @override
+  String get userErrorMessage {
+    _$userErrorMessageAtom.reportRead();
+    return super.userErrorMessage;
+  }
+
+  @override
+  set userErrorMessage(String value) {
+    _$userErrorMessageAtom.reportWrite(value, super.userErrorMessage, () {
+      super.userErrorMessage = value;
+    });
+  }
+
+  late final _$invalidErrorMessageAtom =
+      Atom(name: '_LoginViewModelBase.invalidErrorMessage', context: context);
+
+  @override
+  String get invalidErrorMessage {
+    _$invalidErrorMessageAtom.reportRead();
+    return super.invalidErrorMessage;
+  }
+
+  @override
+  set invalidErrorMessage(String value) {
+    _$invalidErrorMessageAtom.reportWrite(value, super.invalidErrorMessage, () {
+      super.invalidErrorMessage = value;
+    });
+  }
+
   late final _$buttonPassiveAtom =
       Atom(name: '_LoginViewModelBase.buttonPassive', context: context);
 
@@ -77,11 +125,11 @@ mixin _$LoginViewModel on _LoginViewModelBase, Store {
       ActionController(name: '_LoginViewModelBase', context: context);
 
   @override
-  void check(BuildContext context) {
+  void check(BuildContext context, String userName, String password) {
     final _$actionInfo = _$_LoginViewModelBaseActionController.startAction(
         name: '_LoginViewModelBase.check');
     try {
-      return super.check(context);
+      return super.check(context, userName, password);
     } finally {
       _$_LoginViewModelBaseActionController.endAction(_$actionInfo);
     }
@@ -126,6 +174,9 @@ mixin _$LoginViewModel on _LoginViewModelBase, Store {
 userName: ${userName},
 password: ${password},
 data: ${data},
+passErrorMessage: ${passErrorMessage},
+userErrorMessage: ${userErrorMessage},
+invalidErrorMessage: ${invalidErrorMessage},
 buttonPassive: ${buttonPassive}
     ''';
   }

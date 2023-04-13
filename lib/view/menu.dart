@@ -10,14 +10,13 @@ class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     name = MainApp.name;
-    print(name);
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text(
           //tr funct comes from easy localization package
-          LocaleKeys.Welcome.tr() + name,
+          LocaleKeys.Welcome.tr() + ' ' + name,
           style: const TextStyle(
               color: Color.fromARGB(255, 3, 92, 66),
               fontFamily: "Times New Roman",

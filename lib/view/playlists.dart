@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:paw/components/list.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:paw/core/init/lang/locale_keys.g.dart';
+import 'package:paw/view/pages/likes.dart';
 
 class PlayLists extends StatelessWidget {
   PlayLists({super.key});
-  final fav = LocaleKeys.Favourites.tr();
-  final classics = "Classic";
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -35,12 +34,13 @@ class PlayLists extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: ListView(
               children: [
-                List(
-                  playlistName: fav,
+                GestureDetector(
+                  onTap: () => print("deneme"),
+                  child: List(playlistName: LocaleKeys.Favourites.tr()),
                 ),
                 SizedBox(height: 30),
                 List(
-                  playlistName: classics,
+                  playlistName: "Classic",
                 ),
               ],
             ),

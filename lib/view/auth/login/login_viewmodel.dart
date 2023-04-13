@@ -1,7 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:paw/view/auth/login/login_view.dart';
-import 'package:paw/view/menu.dart';
+import 'package:paw/view/auth/login/users.dart';
+import 'package:paw/view/user.dart';
 import '../../../main.dart';
 part 'login_viewmodel.g.dart';
 
@@ -14,25 +16,36 @@ abstract class _LoginViewModelBase with Store {
   String password = '';
   @observable
   var data = [];
+  @observable
+  String passErrorMessage = '';
+  @observable
+  String userErrorMessage = '';
+  @observable
+  String invalidErrorMessage = '';
   @action
-  void check(BuildContext context) {
-    if ((userName.length <= 16) || password.length <= 16) {
+  void check(BuildContext context, String userName, String password) {
+    if (Users.users[userName] != null) {
       // burada kayıtlı olup olmadıkları kontrol edilecek
-      data.add(userName);
-      data.add(password);
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => MainApp(),
-          settings: RouteSettings(arguments: data),
-        ),
-      );
-      buttonPassive = true;
-      print(data);
+      if (Users.users[userName] == password) {
+        data.add(userName);
+        data.add(password);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MainApp(),
+            settings: RouteSettings(arguments: data),
+          ),
+        );
+        buttonPassive = true;
+        print(data);
+      } else {
+        passErrorMessage = "Wrong Password!";
+        buttonPassive = true;
+      }
     } else {
       //kayıtlı değilse uyarı mesajı
-      Navigator.pushNamed(context, '/login');
-      buttonPassive = false;
+      userErrorMessage = "User is not registered!";
+      buttonPassive = true;
     }
   }
 
@@ -55,9 +68,16 @@ abstract class _LoginViewModelBase with Store {
         (password.length > 16) ||
         (password.length < 4)) {
       //invalid uyarısı
-      buttonPassive = true;
+      invalidErrorMessage = "Invalid";
+      final snackBar = SnackBar(
+          content: Text(
+        invalidErrorMessage,
+        style: TextStyle(fontSize: 20),
+      ));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      buttonPassive = false;
     } else {
-      check(context);
+      check(context, userName, password);
     }
   }
 }

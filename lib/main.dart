@@ -25,7 +25,6 @@ class MainApp extends StatelessWidget {
     data = ModalRoute.of(context)?.settings.arguments as List?;
     if (data != null) {
       name = data[0];
-      print('mainde isim:' + name);
     } else {
       name = '';
     }
