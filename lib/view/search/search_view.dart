@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:paw/core/init/lang/locale_keys.g.dart';
+import 'package:paw/view/pages/shazam.dart';
+
+import '../../components/square_tile.dart';
 
 class Search extends StatelessWidget {
   const Search({super.key});
@@ -33,11 +36,25 @@ class Search extends StatelessWidget {
             Color.fromARGB(255, 3, 92, 66),
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
-        child: Center(
-          child: Text(
-            LocaleKeys.Search.tr(),
-            style: const TextStyle(fontSize: 60, color: Colors.black),
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: Text(
+                LocaleKeys.Search.tr(),
+                style: const TextStyle(fontSize: 60, color: Colors.black),
+              ),
+            ),
+            FloatingActionButton(
+              onPressed: () {
+                Shazam();
+              },
+              backgroundColor: Colors.black,
+              child: SquareTile(
+                imagePath: 'lib/images/shazam.png',
+              ),
+            )
+          ],
         ),
       ));
 }
@@ -45,8 +62,8 @@ class Search extends StatelessWidget {
 //what is searchdelegate
 class MySearchDelegate extends SearchDelegate {
   List<String> searchResults = [
-    'Idea 10',
     'Experience',
+    'Idea 10',
     'Valse',
     'Yann Tiersen',
     'Vivaldi İstanbul\'da',
@@ -64,7 +81,10 @@ class MySearchDelegate extends SearchDelegate {
   List<Widget>? buildActions(BuildContext context) {
     // implemented buildActions
     IconButton(
-      icon: const Icon(Icons.clear),
+      icon: const Icon(
+        Icons.clear,
+        color: Colors.black,
+      ),
       onPressed: () {
         if (query.isEmpty) {
           close(context, null); //close searcbar
@@ -83,12 +103,22 @@ class MySearchDelegate extends SearchDelegate {
             Color.fromARGB(255, 3, 92, 66),
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
-        child: Center(
-          //implemented buildResults
-          child: Text(
-            query,
-            style: const TextStyle(fontSize: 64),
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              //implemented buildResults
+              child: Text(
+                query,
+                style: const TextStyle(fontSize: 20),
+              ),
+            ),
+            //image function
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Image.asset('lib/images/experience.jpeg'),
+            ),
+          ],
         ),
       );
 
@@ -123,4 +153,3 @@ class MySearchDelegate extends SearchDelegate {
     );
   }
 }
-//modify to searcviewmodel

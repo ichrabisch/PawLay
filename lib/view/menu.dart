@@ -53,15 +53,25 @@ class Menu extends StatelessWidget {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: <Widget>[
-                    SizedBox(
-                      width: context.highValue,
-                      height: context.highValue,
-                      child: const Center(child: Text("Trial Music 1")),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        width: context.highValue,
+                        height: context.highValue,
+                        child: Center(
+                          child: Image.asset('lib/images/idea10.png'),
+                        ),
+                      ),
                     ),
-                    SizedBox(
-                      width: context.highValue,
-                      height: context.highValue,
-                      child: const Center(child: Text("Trial Music 2")),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        width: context.highValue,
+                        height: context.highValue,
+                        child: Center(
+                          child: Image.asset('lib/images/valse.jpeg'),
+                        ),
+                      ),
                     )
                   ],
                 ),
@@ -83,23 +93,33 @@ class Menu extends StatelessWidget {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: <Widget>[
-                    SizedBox(
-                      width: context.highValue,
-                      height: context.highValue,
-                      child: const Center(child: Text("Trial 1")),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        width: context.highValue,
+                        height: context.highValue,
+                        child: Center(
+                          child: Image.asset('lib/images/rock.jpeg'),
+                        ),
+                      ),
                     ),
-                    SizedBox(
-                      width: context.highValue,
-                      height: context.highValue,
-                      child: const Center(child: Text("Trial 2")),
-                    )
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        width: context.highValue,
+                        height: context.highValue,
+                        child: Center(
+                          child: Image.asset('lib/images/classical.jpeg'),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
               SizedBox(
                 height: context.lowValue,
                 child: const Text(
-                  "Classic",
+                  "Artists",
                   style: TextStyle(
                     color: Color.fromARGB(255, 3, 92, 66),
                     fontFamily: "Time New Roman",
@@ -113,16 +133,26 @@ class Menu extends StatelessWidget {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: <Widget>[
-                    SizedBox(
-                      width: context.highValue,
-                      height: context.highValue,
-                      child: const Center(child: Text("Beethoven")),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        width: context.highValue,
+                        height: context.highValue,
+                        child: Center(
+                          child: Image.asset('lib/images/vivaldi.png'),
+                        ),
+                      ),
                     ),
-                    SizedBox(
-                      width: context.highValue,
-                      height: context.highValue,
-                      child: const Center(child: Text("Vivaldi")),
-                    )
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        width: context.highValue,
+                        height: context.highValue,
+                        child: Center(
+                          child: Image.asset('lib/images/beethoven.jpeg'),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
