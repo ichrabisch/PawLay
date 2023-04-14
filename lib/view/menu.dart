@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:paw/components/song.dart';
 import 'package:paw/main.dart';
 import '../core/extention/build_extention.dart';
 import 'package:paw/core/init/lang/locale_keys.g.dart';
@@ -42,7 +43,7 @@ class Menu extends StatelessWidget {
                   LocaleKeys.Recommend.tr(),
                   style: const TextStyle(
                     color: Color.fromARGB(255, 3, 92, 66),
-                    fontFamily: "Time New Roman",
+                    fontFamily: "Times New Roman",
                     fontSize: 16,
                   ),
                 ),
@@ -53,6 +54,27 @@ class Menu extends StatelessWidget {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: <Widget>[
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Song(),
+                          ),
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SizedBox(
+                          width: context.highValue,
+                          height: context.highValue,
+                          child: Center(
+                            child: Image.asset(
+                                'lib/images/vivaldiistanbulda.jpeg'),
+                          ),
+                        ),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SizedBox(
@@ -82,7 +104,7 @@ class Menu extends StatelessWidget {
                   LocaleKeys.Genre.tr(),
                   style: const TextStyle(
                     color: Color.fromARGB(255, 3, 92, 66),
-                    fontFamily: "Time New Roman",
+                    fontFamily: "Times New Roman",
                     fontSize: 16,
                   ),
                 ),
@@ -122,7 +144,7 @@ class Menu extends StatelessWidget {
                   "Artists",
                   style: TextStyle(
                     color: Color.fromARGB(255, 3, 92, 66),
-                    fontFamily: "Time New Roman",
+                    fontFamily: "Times New Roman",
                     fontSize: 16,
                   ),
                 ),

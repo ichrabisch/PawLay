@@ -27,6 +27,8 @@ class _SettingViewState extends State<SettingView> {
         title: Text(LocaleKeys.Settings.tr(),
             style: const TextStyle(
               color: Color.fromARGB(255, 3, 92, 66),
+              fontFamily: "Times New Roman",
+              fontSize: 36,
             )),
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -50,6 +52,7 @@ class _SettingViewState extends State<SettingView> {
                       style: const TextStyle(
                         fontSize: 20,
                         color: Color.fromARGB(255, 3, 92, 66),
+                        fontFamily: "Times New Roman",
                       ),
                     ),
                   ),
@@ -76,6 +79,7 @@ class _SettingViewState extends State<SettingView> {
                       style: const TextStyle(
                         fontSize: 20,
                         color: Color.fromARGB(255, 3, 92, 66),
+                        fontFamily: "Times New Roman",
                       ),
                     ),
                   ),

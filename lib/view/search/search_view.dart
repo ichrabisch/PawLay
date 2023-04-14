@@ -18,7 +18,7 @@ class Search extends StatelessWidget {
           IconButton(
             icon: const Icon(
               Icons.search,
-              color: const Color.fromARGB(255, 3, 92, 66),
+              color: Color.fromARGB(255, 3, 92, 66),
             ),
             onPressed: () {
               showSearch(
@@ -42,15 +42,18 @@ class Search extends StatelessWidget {
             Center(
               child: Text(
                 LocaleKeys.Search.tr(),
-                style: const TextStyle(fontSize: 60, color: Colors.black),
+                style: const TextStyle(
+                    color: Color.fromARGB(255, 3, 92, 66),
+                    fontFamily: "Times New Roman",
+                    fontSize: 60),
               ),
             ),
             FloatingActionButton(
               onPressed: () {
                 Shazam();
               },
-              backgroundColor: Colors.black,
-              child: SquareTile(
+              backgroundColor: const Color.fromARGB(255, 3, 92, 66),
+              child: const SquareTile(
                 imagePath: 'lib/images/shazam.png',
               ),
             )
@@ -62,11 +65,11 @@ class Search extends StatelessWidget {
 //what is searchdelegate
 class MySearchDelegate extends SearchDelegate {
   List<String> searchResults = [
+    'Vivaldi İstanbul\'da',
     'Experience',
     'Idea 10',
     'Valse',
     'Yann Tiersen',
-    'Vivaldi İstanbul\'da',
   ];
   @override
   Widget? buildLeading(BuildContext context) {
@@ -110,13 +113,16 @@ class MySearchDelegate extends SearchDelegate {
               //implemented buildResults
               child: Text(
                 query,
-                style: const TextStyle(fontSize: 20),
+                style: const TextStyle(
+                    color: Color.fromARGB(255, 3, 92, 66),
+                    fontFamily: "Times New Roman",
+                    fontSize: 30),
               ),
             ),
             //image function
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: Image.asset('lib/images/experience.jpeg'),
+              child: Image.asset('lib/images/vivaldiistanbulda.jpeg'),
             ),
           ],
         ),

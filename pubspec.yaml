@@ -102,5 +102,6 @@ flutter:
 
   #assets which used in app
   assets:
+    - assets/audio/
     - assets/lang/
     - lib/images/

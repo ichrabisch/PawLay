@@ -35,12 +35,23 @@ class PlayLists extends StatelessWidget {
             child: ListView(
               children: [
                 GestureDetector(
-                  onTap: () => print("deneme"),
-                  child: List(playlistName: LocaleKeys.Favourites.tr()),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Likes(),
+                      ),
+                    );
+                  },
+                  child: List(
+                    playlistName: LocaleKeys.Favourites.tr(),
+                    icon: Icon(Icons.my_library_music),
+                  ),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 20),
                 List(
                   playlistName: "Classic",
+                  icon: Icon(Icons.my_library_music),
                 ),
               ],
             ),
