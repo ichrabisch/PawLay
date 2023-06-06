@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:paw/core/init/lang/locale_keys.g.dart';
-import 'package:paw/view/pages/likes.dart';
 import 'package:paw/components/list.dart';
 
 class MyLibrary extends StatelessWidget {
@@ -37,42 +36,42 @@ class MyLibrary extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListView(
-                children: [
+                children: const [
                   List(
                     playlistName: "Classical Violin",
                     icon: Icon(Icons.music_note),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20),
                   List(
                     playlistName: "Piano Song",
                     icon: Icon(Icons.music_note),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20),
                   List(
                     playlistName: "Yellow",
                     icon: Icon(Icons.music_note),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20),
                   List(
                     playlistName: "Classic",
                     icon: Icon(Icons.music_note),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20),
                   List(
                     playlistName: "Sway",
                     icon: Icon(Icons.music_note),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20),
                   List(
                     playlistName: "Runaway",
                     icon: Icon(Icons.music_note),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20),
                   List(
                     playlistName: "Numb",
                     icon: Icon(Icons.music_note),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20),
                   List(
                     playlistName: "Sweather Weather",
                     icon: Icon(Icons.music_note),

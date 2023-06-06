@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:paw/core/init/lang/locale_keys.g.dart';
-import 'package:paw/view/auth/login/login_view.dart';
+import 'package:paw/view/auth/auht_state_changes.dart';
 import 'package:paw/view/setting/setting_viewmodel.dart';
 
 class SettingView extends StatefulWidget {
@@ -94,7 +94,7 @@ class _SettingViewState extends State<SettingView> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const LoginView(),
+                              builder: (context) => const AuthStateChanges(),
                             ),
                           );
                         },

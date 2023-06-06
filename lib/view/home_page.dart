@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:paw/view/menu.dart';
+import 'package:paw/view/musics/view/music_search_view.dart';
 import 'package:paw/view/my_library.dart';
 import 'package:paw/view/playlists.dart';
-import 'package:paw/view/search/search_view.dart';
 import 'package:paw/view/setting/settings_view.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,8 +16,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int index = 2;
   final screens = [
-    PlayLists(),
-    const Search(),
+    const PlayLists(),
+    const MusicSearchView(),
     Menu(),
     const MyLibrary(),
     const SettingView(),

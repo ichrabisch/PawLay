@@ -1,12 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:paw/components/song.dart';
 import 'package:paw/main.dart';
+import 'package:paw/view/musics/view/music_search_view.dart';
 import '../core/extention/build_extention.dart';
 import 'package:paw/core/init/lang/locale_keys.g.dart';
 
+// ignore: must_be_immutable
 class Menu extends StatelessWidget {
   String name = '';
+
+  Menu({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,7 @@ class Menu extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           //tr funct comes from easy localization package
-          LocaleKeys.Welcome.tr() + ' ' + name,
+          '${LocaleKeys.Welcome.tr()} $name',
           style: const TextStyle(
               color: Color.fromARGB(255, 3, 92, 66),
               fontFamily: "Times New Roman",
@@ -59,7 +62,7 @@ class Menu extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Song(),
+                            builder: (context) => const MusicSearchView(),
                           ),
                         );
                       },

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:paw/components/list.dart';
-import 'package:paw/components/song.dart';
 import 'package:paw/core/init/lang/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:paw/view/musics/view/music_search_view.dart';
 
 class Likes extends StatelessWidget {
   const Likes({super.key});
@@ -40,29 +40,29 @@ class Likes extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const Song(),
+                        builder: (context) => const MusicSearchView(),
                       ),
                     );
                   },
-                  child: List(
+                  child: const List(
                     playlistName: 'Vivaldi İstanbul\'da',
-                    icon: const Icon(Icons.favorite),
+                    icon: Icon(Icons.favorite, color: Colors.red),
                   ),
                 ),
                 const SizedBox(height: 20),
-                List(
+                const List(
                   playlistName: 'Idea 10',
-                  icon: const Icon(Icons.favorite),
+                  icon: Icon(Icons.favorite),
                 ),
                 const SizedBox(height: 20),
-                List(
+                const List(
                   playlistName: 'Valse',
-                  icon: const Icon(Icons.favorite),
+                  icon: Icon(Icons.favorite),
                 ),
                 const SizedBox(height: 20),
-                List(
+                const List(
                   playlistName: 'Experience',
-                  icon: const Icon(Icons.favorite),
+                  icon: Icon(Icons.favorite),
                 ),
               ],
             ),

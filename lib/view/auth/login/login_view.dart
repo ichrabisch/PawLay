@@ -1,23 +1,52 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:paw/components/square_tile.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:paw/core/init/lang/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:paw/view/auth/login/login_viewmodel.dart';
+import 'package:paw/view/auth/login/forgot_password.dart';
 
 class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+  final VoidCallback showRegisterPage;
+  const LoginView({super.key, required this.showRegisterPage});
 
   @override
   State<LoginView> createState() => _LoginViewState();
 }
 
 class _LoginViewState extends State<LoginView> {
-  LoginViewModel loginViewModel = LoginViewModel();
+  //text contollers
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  //sign Function
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
+    );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: Text(LocaleKeys.LogIn.tr(),
+            style: const TextStyle(
+              color: Color.fromARGB(255, 3, 92, 66),
+              fontFamily: "Times New Roman",
+              fontSize: 36,
+            )),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(colors: [
@@ -26,112 +55,149 @@ class _LoginViewState extends State<LoginView> {
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Icon(Icons.pets, size: 80),
+          child: SingleChildScrollView(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Icon(
+                Icons.pets,
+                size: 80,
+              ),
               const SizedBox(height: 30),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Observer(builder: (_) {
-                  return TextFormField(
-                    onChanged: (text) {
-                      loginViewModel.saveUserName(text);
-                    },
-                    decoration: InputDecoration(
-                      errorText: loginViewModel.userErrorMessage == ""
-                          ? null
-                          : loginViewModel.userErrorMessage,
-                      enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.all(Radius.circular(30))),
-                      hintText: LocaleKeys.Username.tr(),
-                    ),
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.singleLineFormatter
-                    ],
-                  );
-                }),
+              // Hello again !
+              Text(
+                LocaleKeys.Welcome.tr(),
+                style: GoogleFonts.bebasNeue(
+                  fontSize: 52,
+                ),
               ),
               const SizedBox(height: 10),
+              Text("${LocaleKeys.Meowcome.tr()} 😻",
+                  style: const TextStyle(
+                    fontSize: 18,
+                  )),
+              const SizedBox(height: 30),
+
+              //email textfield
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Observer(builder: (_) {
-                  return TextFormField(
-                    onChanged: (text) {
-                      loginViewModel.savePassword(text);
-                    },
-                    decoration: InputDecoration(
-                        errorText: loginViewModel.passErrorMessage == ""
-                            ? null
-                            : loginViewModel.passErrorMessage,
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.all(Radius.circular(30)),
-                        ),
-                        hintText: LocaleKeys.Password.tr()),
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                    obscureText: true,
-                  );
-                }),
-              ),
-              const SizedBox(height: 10),
-              Observer(builder: (_) {
-                return ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 247, 238, 203),
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 247, 238, 203),
+                    border: Border.all(
+                        color: const Color.fromARGB(255, 247, 238, 203)),
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  onPressed: (() {
-                    if (loginViewModel.buttonPassive) {
-                      loginViewModel.buttonActive(context);
-                    } else {
-                      loginViewModel.buttonPassive = true;
-                      null;
-                    }
-                  }), //isButtonActive ? null :  check,
-                  child: Text(
-                    LocaleKeys.LogIn.tr(),
-                    style: const TextStyle(color: Colors.black),
-                  ),
-                );
-              }),
-              const SizedBox(height: 50),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Divider(
-                        thickness: 0.5,
-                        color: Colors.black,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: TextField(
+                      controller: _emailController,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'e-mail',
                       ),
                     ),
-                    Text(LocaleKeys.Continue.tr()),
-                    const Expanded(
-                      child: Divider(
-                        thickness: 0.5,
-                        color: Colors.black,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+
+              //password textfield
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 247, 238, 203),
+                    border: Border.all(
+                        color: const Color.fromARGB(255, 247, 238, 203)),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: TextField(
+                      controller: _passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: LocaleKeys.Password.tr(),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const ForgotPasswordPage();
+                            },
+                          ),
+                        );
+                      },
+                      child: Text(
+                        LocaleKeys.Forgot.tr(),
+                        style: const TextStyle(
+                          color: Color.fromARGB(255, 29, 35, 219),
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
+              //sign in button
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: GestureDetector(
+                  onTap: signIn,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 3, 92, 66),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        LocaleKeys.LogIn.tr(),
+                        style: const TextStyle(
+                          color: Color.fromARGB(255, 247, 238, 203),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+
+              //not a member? register now.
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SquareTile(
-                    imagePath: 'lib/images/google.png',
-                  ),
-                  SizedBox(width: 40),
-                  SquareTile(
-                    imagePath: 'lib/images/apple.png',
+                  GestureDetector(
+                    onTap: widget.showRegisterPage,
+                    child: Text(
+                      "${LocaleKeys.Register.tr()} "
+                      "${LocaleKeys.Meow.tr()}!",
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 29, 35, 219),
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
                   ),
                 ],
-              )
-            ],
+              ),
+            ]),
           ),
         ),
       ),

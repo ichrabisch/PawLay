@@ -5,7 +5,7 @@ import 'package:paw/core/init/lang/locale_keys.g.dart';
 import 'package:paw/view/pages/likes.dart';
 
 class PlayLists extends StatelessWidget {
-  PlayLists({super.key});
+  const PlayLists({super.key});
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -45,11 +45,11 @@ class PlayLists extends StatelessWidget {
                   },
                   child: List(
                     playlistName: LocaleKeys.Favourites.tr(),
-                    icon: Icon(Icons.my_library_music),
+                    icon: const Icon(Icons.my_library_music),
                   ),
                 ),
                 const SizedBox(height: 20),
-                List(
+                const List(
                   playlistName: "Classic",
                   icon: Icon(Icons.my_library_music),
                 ),
