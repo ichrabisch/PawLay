@@ -1,7 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:paw/core/feature/widget/track_widget.dart';
+import 'package:paw/components/feature/widget/track_widget.dart';
+import 'package:paw/components/music_animation.dart';
 import 'package:paw/core/init/lang/locale_keys.g.dart';
 import 'package:paw/view/musics/view/music_view.dart';
 import 'package:paw/view/musics/viewmodel/music_search_model.dart';
@@ -81,9 +82,7 @@ class _MusicSearchViewState extends State<MusicSearchView> {
                         );
                       } else {
                         return const Center(
-                          child: CircularProgressIndicator(
-                            color: Color.fromARGB(255, 247, 238, 203),
-                          ),
+                          child: MusicVisualizer(),
                         );
                       }
                     },

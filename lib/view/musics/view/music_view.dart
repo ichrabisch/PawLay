@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:paw/components/music_animation.dart';
 import 'package:paw/view/musics/model/music_entity.dart';
 
 // ignore: must_be_immutable
@@ -186,6 +187,14 @@ class _MusicViewState extends State<MusicView> {
                       Text(formatTime(position).toString()),
                       Text(formatTime(duration - position).toString()),
                     ],
+                  ),
+                ),
+                const SizedBox(height: 4),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    height: 45,
+                    child: MusicVisualizer(),
                   ),
                 ),
               ],
