@@ -32,17 +32,25 @@ dependencies:
   flutter:
     sdk: flutter
   
-  curved_navigation_bar: ^1.0.3 #latest version
-  easy_localization: ^3.0.1 #adding multiple language
-  provider: ^6.0.5 
-  mobx: ^2.1.4
-  flutter_mobx: ^2.0.6+5
-  audioplayers: ^0.20.1
-
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  curved_navigation_bar: ^1.0.3 #latest version
+  easy_localization: ^3.0.1 #adding multiple language
+  provider: ^6.0.5 #state management
+  mobx: ^2.1.4 
+  flutter_mobx: ^2.0.6+5
+  audioplayers: ^4.1.0
+  firebase_auth: ^4.6.1
+  firebase_core: ^2.13.0
+  cloud_firestore: ^4.7.1
+  uuid: ^3.0.7
+  path_provider: ^2.0.15 #folder path
+  html: ^0.15.3 #parses web data 
+  cached_network_image: ^3.2.3 
+  google_fonts: ^4.0.4
+  dio: ^5.1.2
 
 dev_dependencies:
   flutter_test:
@@ -102,6 +110,5 @@ flutter:
 
   #assets which used in app
   assets:
-    - assets/audio/
     - assets/lang/
     - lib/images/

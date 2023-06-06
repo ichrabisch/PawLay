@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "102816750680",
+    "project_id": "pawlay-firebase",
+    "storage_bucket": "pawlay-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102816750680:android:db13afe937d3026a5cbe2d",
+        "android_client_info": {
+          "package_name": "com.example.paw"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA876y_orKDr3u3HNyxDdwIXzNoVZBMbZU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
