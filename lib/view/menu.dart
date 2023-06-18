@@ -1,19 +1,26 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:paw/main.dart';
+import 'package:paw/view/data/get_values.dart';
 import 'package:paw/view/musics/view/music_search_view.dart';
 import '../core/extention/build_extention.dart';
 import 'package:paw/core/init/lang/locale_keys.g.dart';
 
-// ignore: must_be_immutable
 class Menu extends StatelessWidget {
-  String name = '';
-
   Menu({super.key});
 
   @override
   Widget build(BuildContext context) {
-    name = MainApp.name;
+    final user = FirebaseAuth.instance.currentUser;
+    GetUserData getUserData = GetUserData();
+    String? name;
+    if (getUserData.menuName == null) {
+      name = '';
+    } else {
+      name = getUserData.menuName;
+    }
+
+    // menuname login sayfasında değeri alıyor ama bu sayfaya geçince tekrar null oluyor!!
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -24,7 +31,7 @@ class Menu extends StatelessWidget {
           style: const TextStyle(
               color: Color.fromARGB(255, 3, 92, 66),
               fontFamily: "Times New Roman",
-              fontSize: 36),
+              fontSize: 30),
         ),
         elevation: 0,
         backgroundColor: Colors.transparent,

@@ -1,18 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:paw/view/data/get_values.dart';
 
 import '../../../core/init/lang/locale_keys.g.dart';
 
 class LogedInPage extends StatefulWidget {
-  const LogedInPage({super.key});
+  LogedInPage({super.key});
 
   @override
   State<LogedInPage> createState() => _LogedInPageState();
 }
 
 class _LogedInPageState extends State<LogedInPage> {
-  final user = FirebaseAuth.instance.currentUser!;
+  //final user = FirebaseAuth.instance.currentUser!;
+  List<String> userData = [];
+  List<String> docIDs = [];
 
   @override
   Widget build(BuildContext context) {
@@ -35,30 +39,37 @@ class _LogedInPageState extends State<LogedInPage> {
             Color.fromARGB(255, 3, 92, 66),
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                LocaleKeys.SignedIn.tr() + user.email!,
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Color.fromARGB(255, 3, 92, 66),
-                ),
-              ),
-              MaterialButton(
-                onPressed: () {
-                  FirebaseAuth.instance.signOut();
-                },
-                color: const Color.fromARGB(255, 3, 92, 66),
-                child: Text(
-                  LocaleKeys.SignOut.tr(),
-                  style: const TextStyle(
-                    color: Color.fromARGB(255, 247, 238, 203),
+        child: SafeArea(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(child: FutureBuilder(
+                  builder: (context, snapshot) {
+                    return ListView.builder(
+                      itemCount: 1,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          title: GetUserData(),
+                        );
+                      },
+                    );
+                  },
+                )),
+                MaterialButton(
+                  onPressed: () {
+                    FirebaseAuth.instance.signOut();
+                  },
+                  color: const Color.fromARGB(255, 3, 92, 66),
+                  child: Text(
+                    LocaleKeys.SignOut.tr(),
+                    style: const TextStyle(
+                      color: Color.fromARGB(255, 247, 238, 203),
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),
