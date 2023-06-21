@@ -1,12 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:paw/view/pages/service/shazam_api.dart';
 import 'package:record/record.dart';
-import '../../core/init/lang/locale_keys.g.dart';
 
 class Shazam extends StatefulWidget {
   const Shazam({super.key});
@@ -21,7 +19,7 @@ class _ShazamState extends State<Shazam> {
   void startRecod() async {
     if (await record.hasPermission()) {
       Directory? directory = await getApplicationDocumentsDirectory();
-      String path = directory!.path + '/recorded.aac';
+      String path = '${directory!.path}/recorded.aac';
 
       await record.start(path: path);
       setState(() {
@@ -106,10 +104,9 @@ class _ShazamState extends State<Shazam> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(
-          //tr funct comes from easy localization package
+        title: const Text(
           'Shazam',
-          style: const TextStyle(
+          style: TextStyle(
               color: Color.fromARGB(255, 3, 92, 66),
               fontFamily: "Times New Roman",
               fontSize: 30),
@@ -166,7 +163,7 @@ class _ShazamState extends State<Shazam> {
                     fontSize: 20),
               ),
               style: ElevatedButton.styleFrom(
-                primary: Colors.transparent,
+                backgroundColor: Colors.transparent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(100),
                 ),

@@ -1,12 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:paw/view/musics/model/music_entity.dart';
 
-import '../../../core/init/lang/locale_keys.g.dart';
 import 'music_view.dart';
 
 class DeviceMusicView extends StatefulWidget {
@@ -27,10 +24,9 @@ class _DeviceMusicViewState extends State<DeviceMusicView> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(
-          //tr funct comes from easy localization package
+        title: const Text(
           'Device',
-          style: const TextStyle(
+          style: TextStyle(
               color: Color.fromARGB(255, 3, 92, 66),
               fontFamily: "Times New Roman",
               fontSize: 36),
@@ -133,6 +129,7 @@ Future<String?> getDownloadPath() async {
       directory = await getExternalStorageDirectory();
     }
   } catch (err, stack) {
+    // ignore: avoid_print
     print("Cannot get download folder path");
   }
   return directory?.path;

@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:paw/components/music_animation.dart';
 import 'package:paw/core/init/lang/locale_keys.g.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
 class GetUserData extends StatelessWidget {
@@ -15,10 +14,9 @@ class GetUserData extends StatelessWidget {
   // singleton yapmalısın bu sayede hafızada tek bir
   // instance ve bu instance ait tek bir özellik olur ve
   // programın her noktasından aynı adreste bu değişkenlere erişebilirsin
-  GetUserData({super.key});
+  const GetUserData({super.key});
   @override
   Widget build(BuildContext context) {
-    SharedPreferences prefs;
     final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
     String email = '';
     String firstName = '';

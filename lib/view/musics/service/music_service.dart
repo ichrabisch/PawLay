@@ -4,10 +4,6 @@ import 'package:paw/view/musics/service/download_link.dart';
 
 import '../model/music_entity.dart';
 
-//TODO şarkı indirme(dızlama) ,indirilen şarkıyı uygulamanın dosya yolunca saklama
-
-//TODO shazam api denenecek
-
 class MusicSearchService {
   final Dio dio = Dio();
   // ignore: constant_identifier_names
@@ -41,6 +37,7 @@ class MusicSearchService {
       }
       return tracks;
     } catch (e) {
+      // ignore: avoid_print
       print(e);
       throw Exception(e);
     }

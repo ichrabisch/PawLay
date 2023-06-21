@@ -1,13 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:paw/components/feature/widget/track_widget.dart';
 import '../../../core/init/lang/locale_keys.g.dart';
 import '../model/music_entity.dart';
-import 'music_view.dart';
 
 class Likes extends StatefulWidget {
   const Likes({super.key});

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -68,8 +67,8 @@ class _EditUserDataViewState extends State<EditUserDataView> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text('Edit User Data',
-            style: const TextStyle(
+        title: const Text('Edit User Data',
+            style: TextStyle(
               color: Color.fromARGB(255, 3, 92, 66),
               fontFamily: "Times New Roman",
               fontSize: 36,
@@ -99,8 +98,8 @@ class _EditUserDataViewState extends State<EditUserDataView> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Text("😻",
-                        style: const TextStyle(
+                    const Text("😻",
+                        style: TextStyle(
                           fontSize: 14,
                         )),
                     const SizedBox(height: 30),
@@ -189,10 +188,10 @@ class _EditUserDataViewState extends State<EditUserDataView> {
                             color: const Color.fromARGB(255, 3, 92, 66),
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               'Save',
-                              style: const TextStyle(
+                              style: TextStyle(
                                 color: Color.fromARGB(255, 247, 238, 203),
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,

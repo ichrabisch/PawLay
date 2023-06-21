@@ -133,7 +133,7 @@ class _TrackWidgetState extends State<TrackWidget> {
                   ),
                 ),
                 Text(widget.track.genre ?? "Unknown",
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.lightGreen,
                     ))
               ],
@@ -147,8 +147,9 @@ class _TrackWidgetState extends State<TrackWidget> {
                 addFavorite();
               }
             },
-            icon:
-                isFavorite ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
+            icon: isFavorite
+                ? const Icon(Icons.favorite)
+                : const Icon(Icons.favorite_border),
           )
         ],
       ),

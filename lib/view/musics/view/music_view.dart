@@ -4,7 +4,6 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:paw/components/music_animation.dart';
 import 'package:paw/view/musics/model/music_entity.dart';
 
 // ignore: must_be_immutable
@@ -101,7 +100,7 @@ class _MusicViewState extends State<MusicView> {
         await dir.create(recursive: true);
       }
     }
-    String path = dir!.path + '/Download/${widget.track.title}.mp3';
+    String path = '${dir!.path}/Download/${widget.track.title}.mp3';
     await dio.download(widget.track.downloadLink!, path,
         onReceiveProgress: (rec, total) {
       setState(() {
@@ -237,7 +236,7 @@ class _MusicViewState extends State<MusicView> {
                             ? 'Download'
                             : 'Downloading $percentage %'),
                       )
-                    : SizedBox()
+                    : const SizedBox()
               ],
             ),
           ),

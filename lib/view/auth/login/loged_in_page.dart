@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/init/lang/locale_keys.g.dart';
 
 class LogedInPage extends StatefulWidget {
-  LogedInPage({super.key});
+  const LogedInPage({super.key});
 
   @override
   State<LogedInPage> createState() => _LogedInPageState();
@@ -58,7 +57,7 @@ class _LogedInPageState extends State<LogedInPage> {
                     return ListView.builder(
                       itemCount: 1,
                       itemBuilder: (context, index) {
-                        return ListTile(
+                        return const ListTile(
                           title: GetUserData(),
                         );
                       },
@@ -72,9 +71,9 @@ class _LogedInPageState extends State<LogedInPage> {
                         .then((value) => setState(() {}));
                   },
                   color: const Color.fromARGB(255, 3, 92, 66),
-                  child: Text(
+                  child: const Text(
                     'Edit User Data',
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Color.fromARGB(255, 247, 238, 203),
                     ),
                   ),

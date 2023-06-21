@@ -16,6 +16,7 @@ Future<String> getSoundCloudDownloadLink(String url) async {
     String downloadLink = downloadLinkElement.attributes["href"]!;
     return downloadLink;
   } catch (e) {
+    // ignore: avoid_print
     print(e);
   }
   return "";

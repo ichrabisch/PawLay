@@ -14,7 +14,7 @@ class AuthStateChanges extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             //kullanıcı girdiyse
-            return LogedInPage();
+            return const LogedInPage();
           } else {
             //giriş yapma/ kaydolma ekranı
             return const AuthPage();

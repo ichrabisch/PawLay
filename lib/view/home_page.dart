@@ -19,8 +19,8 @@ class _HomePageState extends State<HomePage> {
   final screens = [
     const PlayLists(),
     const MusicSearchView(),
-    Shazam(),
-    Menu(),
+    const Shazam(),
+    const Menu(),
     const MyLibrary(),
     const SettingView(),
   ];

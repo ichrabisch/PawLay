@@ -9,11 +9,11 @@ class MusicVisualizer extends StatefulWidget {
 
 class _MusicVisualizerState extends State<MusicVisualizer> {
   List<Color> colors = [
-    Color.fromARGB(255, 3, 92, 66),
+    const Color.fromARGB(255, 3, 92, 66),
     Colors.green,
     Colors.lightGreenAccent,
     Colors.green,
-    Color.fromARGB(255, 3, 92, 66),
+    const Color.fromARGB(255, 3, 92, 66),
   ];
   List<int> duration = [900, 700, 600, 800, 500];
 
