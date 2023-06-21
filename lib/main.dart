@@ -5,6 +5,7 @@ import 'package:paw/core/init/lang/language_manager.dart';
 import 'package:paw/firebase_options.dart';
 import 'package:paw/view/auth/auth_page.dart';
 import 'package:paw/view/home_page.dart';
+import 'package:paw/view/setting/edit_user_data.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +39,7 @@ class MainApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/login': (context) => const AuthPage(),
+        '/edit_user_data': (context) => const EditUserDataView()
       },
       home: const HomePage(),
     );

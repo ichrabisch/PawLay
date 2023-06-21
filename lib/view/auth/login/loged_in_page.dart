@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:paw/view/data/get_values.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/init/lang/locale_keys.g.dart';
 
@@ -17,6 +18,14 @@ class _LogedInPageState extends State<LogedInPage> {
   //final user = FirebaseAuth.instance.currentUser!;
   List<String> userData = [];
   List<String> docIDs = [];
+  @override
+  void initState() {
+    super.initState();
+    SharedPreferences.getInstance().then((prefs) {
+      prefs.setString('name', FirebaseAuth.instance.currentUser!.displayName!);
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +65,26 @@ class _LogedInPageState extends State<LogedInPage> {
                     );
                   },
                 )),
+                const SizedBox(height: 20),
+                MaterialButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/edit_user_data')
+                        .then((value) => setState(() {}));
+                  },
+                  color: const Color.fromARGB(255, 3, 92, 66),
+                  child: Text(
+                    'Edit User Data',
+                    style: const TextStyle(
+                      color: Color.fromARGB(255, 247, 238, 203),
+                    ),
+                  ),
+                ),
                 MaterialButton(
                   onPressed: () {
                     FirebaseAuth.instance.signOut();
+                    SharedPreferences.getInstance().then((prefs) {
+                      prefs.remove('name');
+                    });
                   },
                   color: const Color.fromARGB(255, 3, 92, 66),
                   child: Text(

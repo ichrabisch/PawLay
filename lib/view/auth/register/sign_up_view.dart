@@ -51,6 +51,7 @@ class _SignUpViewState extends State<SignUpView> {
       'age': age,
       'email': email,
     });
+    FirebaseAuth.instance.currentUser?.updateDisplayName(firstName);
   }
 
   bool passIsConfirmed() {

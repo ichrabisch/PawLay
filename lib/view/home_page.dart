@@ -5,6 +5,7 @@ import 'package:paw/view/musics/view/music_search_view.dart';
 import 'package:paw/view/my_library.dart';
 import 'package:paw/view/playlists.dart';
 import 'package:paw/view/setting/settings_view.dart';
+import 'package:paw/view/pages/shazam.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   final screens = [
     const PlayLists(),
     const MusicSearchView(),
+    Shazam(),
     Menu(),
     const MyLibrary(),
     const SettingView(),
@@ -28,6 +30,8 @@ class _HomePageState extends State<HomePage> {
       const Icon(Icons.my_library_music,
           size: 30, color: Color.fromARGB(255, 3, 92, 66)),
       const Icon(Icons.search, size: 30, color: Color.fromARGB(255, 3, 92, 66)),
+      const Icon(Icons.mic_external_on_outlined,
+          size: 30, color: Color.fromARGB(255, 3, 92, 66)),
       const Icon(Icons.headphones,
           size: 30, color: Color.fromARGB(255, 3, 92, 66)),
       const Icon(Icons.my_library_music_outlined,

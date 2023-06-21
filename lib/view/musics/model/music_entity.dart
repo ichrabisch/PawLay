@@ -4,7 +4,7 @@ class Track {
   String? title;
   int? duration;
   String? downloadLink;
-
+  String? path;
   Track(
       {this.artworkUrl,
       this.genre,

@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:audioplayers/audioplayers.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:paw/components/music_animation.dart';
 import 'package:paw/view/musics/model/music_entity.dart';
 
@@ -20,6 +24,7 @@ class _MusicViewState extends State<MusicView> {
   Duration duration = Duration.zero;
   Duration position = Duration.zero;
   Duration maxDuration = Duration.zero;
+  int percentage = 0;
 
   String formatTime(Duration duration) {
     String toDigits(int n) => n.toString().padLeft(2, '0');
@@ -76,7 +81,33 @@ class _MusicViewState extends State<MusicView> {
     audioPlayer.setReleaseMode(ReleaseMode.loop);
 
     // play audio
-    audioPlayer.setSourceUrl(widget.track.downloadLink!);
+    if (widget.track.downloadLink != null) {
+      audioPlayer.setSourceUrl(widget.track.downloadLink!);
+    } else {
+      audioPlayer.setSourceDeviceFile(widget.track.path!);
+    }
+  }
+
+  Future<void> downloadSong() async {
+    Dio dio = Dio();
+    Directory? dir;
+    if (Platform.isAndroid) {
+      dir = await getExternalStorageDirectory();
+    } else {
+      dir = await getApplicationDocumentsDirectory();
+    }
+    if (dir != null) {
+      if (!await dir.exists()) {
+        await dir.create(recursive: true);
+      }
+    }
+    String path = dir!.path + '/Download/${widget.track.title}.mp3';
+    await dio.download(widget.track.downloadLink!, path,
+        onReceiveProgress: (rec, total) {
+      setState(() {
+        percentage = ((rec / total) * 100).toInt();
+      });
+    });
   }
 
   @override
@@ -116,7 +147,8 @@ class _MusicViewState extends State<MusicView> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: Image.network(
-                    widget.track.artworkUrl!,
+                    widget.track.artworkUrl ??
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo_zYAMvJTiJpGN70ufHpPB00M-69FvgGFCg&usqp=CAU',
                     height: 300,
                     width: 300,
                     fit: BoxFit.cover,
@@ -136,7 +168,7 @@ class _MusicViewState extends State<MusicView> {
                   height: 4,
                 ),
                 Text(
-                  widget.track.genre!,
+                  widget.track.genre ?? 'Unknown',
                   style: const TextStyle(
                     color: Color.fromARGB(255, 3, 92, 66),
                     fontFamily: "Times New Roman",
@@ -190,13 +222,22 @@ class _MusicViewState extends State<MusicView> {
                   ),
                 ),
                 const SizedBox(height: 4),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    height: 45,
-                    child: MusicVisualizer(),
-                  ),
-                ),
+                //download song button
+                // ignore: deprecated_member_use
+                widget.track.path == null
+                    ? ElevatedButton(
+                        onPressed: () async {
+                          await downloadSong();
+                          setState(() {
+                            widget.track.path =
+                                '/storage/emulated/0/Download/${widget.track.title}.mp3';
+                          });
+                        },
+                        child: Text(percentage == 0
+                            ? 'Download'
+                            : 'Downloading $percentage %'),
+                      )
+                    : SizedBox()
               ],
             ),
           ),

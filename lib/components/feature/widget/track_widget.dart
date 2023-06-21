@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:paw/view/musics/model/music_entity.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class TrackWidget extends StatefulWidget {
   final Track track;
@@ -15,6 +17,92 @@ class TrackWidget extends StatefulWidget {
 }
 
 class _TrackWidgetState extends State<TrackWidget> {
+  bool isFavorite = false;
+  Future<void> addFavorite() async {
+    if (FirebaseAuth.instance.currentUser == null) {
+      return;
+    }
+    await FirebaseFirestore.instance
+        .collection('favorites')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .update({
+      'songs': FieldValue.arrayUnion([
+        {
+          'title': widget.track.title,
+          'genre': widget.track.genre,
+          'artwork_url': widget.track.artworkUrl,
+          'duration': widget.track.duration,
+          'download_link': widget.track.downloadLink,
+        }
+      ])
+    });
+    setState(() {
+      isFavorite = true;
+    });
+  }
+
+  Future<void> removeFavorite() async {
+    if (FirebaseAuth.instance.currentUser == null) {
+      return;
+    }
+    await FirebaseFirestore.instance
+        .collection('favorites')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .update({
+      'songs': FieldValue.arrayRemove([
+        {
+          'title': widget.track.title,
+          'genre': widget.track.genre,
+          'artwork_url': widget.track.artworkUrl,
+          'duration': widget.track.duration,
+          'download_link': widget.track.downloadLink,
+        }
+      ])
+    });
+    setState(() {
+      isFavorite = false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    inFavorite().then((value) => setState(() {
+          isFavorite = value;
+        }));
+  }
+
+  Future<bool> inFavorite() async {
+    if (FirebaseAuth.instance.currentUser == null) {
+      return Future.value(false);
+    }
+
+    bool isDocExist = await FirebaseFirestore.instance
+        .collection('favorites')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((value) => value.exists);
+    if (!isDocExist) {
+      await FirebaseFirestore.instance
+          .collection('favorites')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .set({'songs': []});
+      return false;
+    }
+
+    var favorites = await FirebaseFirestore.instance
+        .collection('favorites')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((value) => value.data()!['songs']);
+    for (var favorite in favorites) {
+      if (favorite['title'] == widget.track.title) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -51,6 +139,17 @@ class _TrackWidgetState extends State<TrackWidget> {
               ],
             ),
           ),
+          IconButton(
+            onPressed: () {
+              if (isFavorite) {
+                removeFavorite();
+              } else {
+                addFavorite();
+              }
+            },
+            icon:
+                isFavorite ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
+          )
         ],
       ),
     );

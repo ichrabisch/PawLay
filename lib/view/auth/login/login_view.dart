@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:paw/core/init/lang/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:paw/view/auth/login/forgot_password.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginView extends StatefulWidget {
   final VoidCallback showRegisterPage;
@@ -24,6 +26,16 @@ class _LoginViewState extends State<LoginView> {
       email: _emailController.text.trim(),
       password: _passwordController.text.trim(),
     );
+    if (FirebaseAuth.instance.currentUser!.displayName == null) {
+      String name = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .get()
+          .then((value) => value.data()!['first name']);
+      await FirebaseAuth.instance.currentUser!.updateDisplayName(name);
+    }
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('name', FirebaseAuth.instance.currentUser!.displayName!);
   }
 
   @override

@@ -1,27 +1,41 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:paw/view/data/get_values.dart';
 import 'package:paw/view/musics/view/music_search_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../core/extention/build_extention.dart';
 import 'package:paw/core/init/lang/locale_keys.g.dart';
 
-class Menu extends StatelessWidget {
-  Menu({super.key});
+class Menu extends StatefulWidget {
+  const Menu({super.key});
+
+  @override
+  State<Menu> createState() => _MenuState();
+}
+
+class _MenuState extends State<Menu> {
+  String name = '';
+  @override
+  void initState() {
+    super.initState();
+    getName();
+  }
+
+  void getName() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getString('name') != null) {
+      name = prefs.getString('name')!;
+    } else {
+      name = '';
+    }
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser;
-    GetUserData getUserData = GetUserData();
-    String? name;
-    if (getUserData.menuName == null) {
-      name = '';
-    } else {
-      name = getUserData.menuName;
-    }
-
-    // menuname login sayfasında değeri alıyor ama bu sayfaya geçince tekrar null oluyor!!
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -195,3 +209,5 @@ class Menu extends StatelessWidget {
     );
   }
 }
+
+class UserData {}
