@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings, use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -39,11 +41,9 @@ class _ShazamState extends State<Shazam> {
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: Text("Shazam"),
+              title: const Text("Shazam"),
               content: Column(children: [
-                Container(
-                  child: Image.network(songMap['track']['images']['coverart']),
-                ),
+                Image.network(songMap['track']['images']['coverart']),
                 Text("Song Name: " + songMap['track']['title']),
                 Text("Artist Name: " + songMap['track']['subtitle']),
               ]),
@@ -52,7 +52,7 @@ class _ShazamState extends State<Shazam> {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text("close"))
+                    child: const Text("close"))
               ],
             );
           });
@@ -65,8 +65,8 @@ class _ShazamState extends State<Shazam> {
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: Text("Shazam"),
-              content: Column(children: [
+              title: const Text("Shazam"),
+              content: Column(children: const [
                 Text("No song found"),
               ]),
               actions: [
@@ -74,7 +74,7 @@ class _ShazamState extends State<Shazam> {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text("close"))
+                    child: const Text("close"))
               ],
             );
           });
@@ -83,10 +83,11 @@ class _ShazamState extends State<Shazam> {
 
   final record = Record();
   List<Color> colorList = [
-    Colors.lightBlue,
-    Colors.lightBlueAccent,
-    Colors.blue,
-    Colors.blueAccent,
+    const Color.fromARGB(255, 3, 92, 66),
+    Colors.green,
+    Colors.lightGreenAccent,
+    Colors.green,
+    const Color.fromARGB(255, 3, 92, 66),
   ];
   List<Alignment> alignmentList = [
     Alignment.bottomLeft,
@@ -95,8 +96,8 @@ class _ShazamState extends State<Shazam> {
     Alignment.topLeft,
   ];
   int index = 0;
-  Color bottomColor = Colors.blueAccent;
-  Color topColor = Colors.blue;
+  Color bottomColor = const Color.fromARGB(255, 3, 92, 66);
+  Color topColor = Colors.green;
   Alignment begin = Alignment.bottomLeft;
   Alignment end = Alignment.topRight;
   @override
@@ -136,16 +137,12 @@ class _ShazamState extends State<Shazam> {
                 // animate the color
                 bottomColor = colorList[index % colorList.length];
                 topColor = colorList[(index + 1) % colorList.length];
-
-                //// animate the alignment
-                // begin = alignmentList[index % alignmentList.length];
-                // end = alignmentList[(index + 2) % alignmentList.length];
               });
             },
             duration: const Duration(seconds: 1),
             child: ElevatedButton(
               onPressed: () {
-                //start to listen song and animate
+                //start to listen song
                 setState(() {
                   _isRecording = !_isRecording;
                 });

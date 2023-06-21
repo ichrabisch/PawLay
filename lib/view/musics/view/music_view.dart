@@ -147,9 +147,9 @@ class _MusicViewState extends State<MusicView> {
                   borderRadius: BorderRadius.circular(20),
                   child: Image.network(
                     widget.track.artworkUrl ??
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo_zYAMvJTiJpGN70ufHpPB00M-69FvgGFCg&usqp=CAU',
-                    height: 300,
-                    width: 300,
+                        'https://www.pianoemporium.com/wp-content/uploads/2019/03/music-keyboard-technology-guitar-concert-piano-1108329-pxhere.com_-800x600.jpg',
+                    height: 350,
+                    width: 350,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -215,8 +215,16 @@ class _MusicViewState extends State<MusicView> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(formatTime(position).toString()),
-                      Text(formatTime(duration - position).toString()),
+                      Text(
+                        formatTime(position).toString(),
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 6, 72, 52)),
+                      ),
+                      Text(
+                        formatTime(duration - position).toString(),
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 6, 72, 52)),
+                      ),
                     ],
                   ),
                 ),
@@ -224,7 +232,11 @@ class _MusicViewState extends State<MusicView> {
                 //download song button
                 // ignore: deprecated_member_use
                 widget.track.path == null
-                    ? ElevatedButton(
+                    ? ElevatedButton.icon(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color.fromARGB(255, 3, 92, 66)),
+                        ),
                         onPressed: () async {
                           await downloadSong();
                           setState(() {
@@ -232,11 +244,23 @@ class _MusicViewState extends State<MusicView> {
                                 '/storage/emulated/0/Download/${widget.track.title}.mp3';
                           });
                         },
-                        child: Text(percentage == 0
-                            ? 'Download'
-                            : 'Downloading $percentage %'),
+                        icon: const Icon(
+                          Icons.download,
+                          color: Color.fromARGB(255, 247, 238, 203),
+                        ),
+                        label: Text(
+                          percentage == 0
+                              ? 'Download '
+                              : 'Downloading $percentage %',
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 247, 238, 203)),
+                        ),
                       )
-                    : const SizedBox()
+                    : ElevatedButton.icon(
+                        onPressed: null,
+                        icon: const Icon(Icons.download_done),
+                        label: const Text('Downloaded'),
+                      )
               ],
             ),
           ),

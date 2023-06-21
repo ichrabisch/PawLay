@@ -60,9 +60,9 @@ class PlayLists extends StatelessWidget {
                       ),
                     );
                   },
-                  child: const List(
-                    playlistName: "Device",
-                    icon: Icon(Icons.storage),
+                  child: List(
+                    playlistName: LocaleKeys.Library.tr(),
+                    icon: const Icon(Icons.storage),
                   ),
                 ),
               ],

@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:paw/core/init/lang/locale_keys.g.dart';
 import 'package:paw/view/musics/model/music_entity.dart';
 
 import 'music_view.dart';
@@ -24,9 +26,9 @@ class _DeviceMusicViewState extends State<DeviceMusicView> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text(
-          'Device',
-          style: TextStyle(
+        title: Text(
+          LocaleKeys.Library.tr(),
+          style: const TextStyle(
               color: Color.fromARGB(255, 3, 92, 66),
               fontFamily: "Times New Roman",
               fontSize: 36),
@@ -64,7 +66,11 @@ class _DeviceMusicViewState extends State<DeviceMusicView> {
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
                           return ListTile(
-                            title: Text(snapshot.data![index]['name']),
+                            title: Text(
+                              snapshot.data![index]['name'],
+                              style: const TextStyle(
+                                  color: Color.fromARGB(255, 3, 92, 66)),
+                            ),
                             onTap: () {
                               Track track =
                                   Track(title: snapshot.data![index]['name']);

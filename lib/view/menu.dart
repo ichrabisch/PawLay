@@ -14,6 +14,7 @@ class Menu extends StatefulWidget {
 
 class _MenuState extends State<Menu> {
   String name = '';
+
   @override
   void initState() {
     super.initState();
@@ -79,7 +80,7 @@ class _MenuState extends State<Menu> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const MusicSearchView(),
+                            builder: (context) => MusicSearchView(),
                           ),
                         );
                       },
@@ -205,5 +206,3 @@ class _MenuState extends State<Menu> {
     );
   }
 }
-
-class UserData {}
